@@ -1,7 +1,7 @@
 import { Component, createSignal, onMount, onCleanup, For } from "solid-js";
 import TheyyWearr from "../img/Landing Page - User Login.png";
 import Erida from '../img/eyi.jpg';
-import "./Portfolio.css";
+import "./portfolio.css"
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
