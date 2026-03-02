@@ -940,24 +940,29 @@ body::before {
 }
 .pf-proj__mockup-body {
   padding: 0;
-  aspect-ratio: 440 / 330; /* biar presisi */
-  overflow: hidden;
-  background: #0f172a; /* fallback biar ga kosong */
+  aspect-ratio: 440 / 305;
+  overflow-y: auto;   /* ini bikin bisa scroll manual */
+  overflow-x: hidden;
+  background: #0f172a;
+  scrollbar-width: none; /* hide scrollbar firefox */
+    scroll-behavior: smooth;
+
 }
 
 .pf-proj__image {
-  border-radius: 6px;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* biar penuh & ga gepeng */
-  object-position: top;
+  height: auto;
   display: block;
-  transition: transform 0.4s ease;
+  transform: none;
+  transition: none;
+}
+.pf-proj__mockup-body::-webkit-scrollbar {
+  display: none;
+}
+.pf-proj__image {
+  backface-visibility: hidden;
 }
 
-.pf-proj__mockup:hover .pf-proj__image {
-  transform: scale(1.03);
-}
 .pf-proj__mockup:hover {
   transform: translateY(-6px);
   box-shadow:
@@ -986,13 +991,7 @@ body::before {
 .pf-proj__mockup-bar span:nth-child(3) {
   background: #28ca42;
 }
-.pf-proj__mockup-body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 130px;
-}
+
 .pf-proj__mockup-line {
   height: 8px;
   border-radius: 4px;
@@ -1020,6 +1019,7 @@ body::before {
   font-size: 0.88rem;
 }
 .pf-proj__links {
+  margin-left: 10px;
   display: flex;
   gap: 1rem;
 }
@@ -1067,77 +1067,6 @@ body::before {
 }
 
 /* ─── SKILLS ─────────────────────────────────────────────────────────────────── */
-.pf-skills__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.8rem;
-  margin-bottom: 3rem;
-}
-.pf-skills__group {
-  transition: all 0.3s ease;
-}
-.pf-skills__group:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  border-color: rgba(0, 201, 177, 0.2) !important;
-}
-.pf-skills__group-header {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 1.4rem;
-}
-.pf-skills__icon {
-  font-size: 1.35rem;
-}
-.pf-skills__cat {
-  font-family: var(--ff-disp);
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--txt-1);
-}
-.pf-skills__bars {
-  display: flex;
-  flex-direction: column;
-  gap: 0.95rem;
-}
-.pf-skills__bar-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.38rem;
-}
-.pf-skills__bar-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  color: var(--txt-2);
-}
-.pf-skills__track {
-  height: 5px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.pf-skills__fill {
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--blue), var(--teal));
-  position: relative;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.pf-skills__fill::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 8px rgba(0, 201, 177, 0.8);
-}
-
 .pf-skills__tag-label {
   font-size: 0.77rem;
   letter-spacing: 0.12em;
@@ -1311,6 +1240,93 @@ body::before {
   font-size: 0.8rem;
 }
 
+/* CERTIFICATES */
+
+.pf-cert__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pf-cert__card {
+  padding: 1.8rem;
+  transition: all 0.3s ease;
+}
+
+.pf-cert__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 255, 200, 0.08);
+}
+
+.pf-cert__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.pf-cert__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.pf-cert__issuer {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.pf-cert__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pf-cert__link-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pf-cert__link-combo svg {
+  transition: transform 0.2s ease;
+}
+
+.pf-cert__link-combo:hover {
+  opacity: 0.85;
+}
+
+.pf-cert__link-combo:hover svg {
+  transform: translateX(3px);
+}
+
+.pf-cert__date {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.pf-cert__desc {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.pf-cert__link {
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.pf-cert__link:hover {
+  opacity: 0.8;
+}
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .pf-hero {

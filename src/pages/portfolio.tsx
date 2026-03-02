@@ -1,9 +1,12 @@
 import { Component, createSignal, onMount, onCleanup, For } from "solid-js";
-import TheyyWearr from "../img/Landing Page - User Login.png";
-import Erida from '../img/eyi.jpg';
-import "./portfolio.css"
-
-// ─── DATA ────────────────────────────────────────────────────────────────────
+import TheyyWearr from "../img/theyywearr.webp";
+import OmniLearn from "../img/omnilearn.webp";
+import LMS from "../img/LMS.webp";
+import Pemerintah from "../img/PEMERINTAH.webp";
+import ULOReport from "../img/Desktop - 2.webp";
+import Greenify from "../img/dekstop - Home page.webp";
+import Erida from "../img/eyi.webp";
+import "./portfolio.css";
 
 const NAV_LINKS = [
   "About",
@@ -18,11 +21,11 @@ const NAV_LINKS = [
 const EXPERIENCES = [
   {
     company: "PT. Special Skill Indonesia",
-    role: "Web Developer",
+    role: "Web Developer Intern",
     period: "Mar 2026 — Present",
     location: "Pekuncen, Banyumas, Jawa Tengah, ID - Remote",
-    desc: "Developing and maintaining large-scale web applications serving billions of users. Collaborating with cross-functional teams to deliver features that improve user experience across multiple product surfaces.",
-    tech: ["Laravel", "PHP", "WordPress"],
+    desc: "Assisting in the development and maintenance of company websites using WordPress. Customizing themes, managing plugins, optimizing website performance, and ensuring responsive design across devices. Collaborating with the development team to implement new features and improve overall user experience.",
+    tech: ["WordPress", "PHP", "Laravel"],
     current: true,
   },
   {
@@ -39,7 +42,7 @@ const EXPERIENCES = [
       "Authentication & RBAC",
       "Product Operations",
     ],
-    current: true,
+    current: false,
   },
   {
     company: "PT. Arkavia Cipta Nusantara",
@@ -110,9 +113,9 @@ const EDUCATIONS = [
 
 const PROJECTS = [
   {
-    title: "TheyyWearr",
+    title: "TheyyWearr - E Commerce Website",
     desc: "Modern monitoring dashboard built with Solid.js and TypeScript.",
-    tech: ["Solid.js", "TypeScript", "Solid JS", "PostgreSQL"],
+    tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
     github: "https://github.com/PSAJ-WEB/Front-End",
     demo: "https://theyywearr.vercel.app/",
     image: TheyyWearr,
@@ -123,11 +126,48 @@ const PROJECTS = [
     featured: true,
     align: "right",
     label: "Featured Project",
-    title: "Opportunity — Career Platform",
+    title: "OmniLearn - E Learning Website",
     desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
-    github: "#",
-    demo: "#",
+    tech: ["WordPress"],
+    image: OmniLearn,
+    demo: "https://omnilearn.id/",
+  },
+  {
+    featured: true,
+    align: "left",
+    title: "Learning Management System (LMS)",
+    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
+    image: LMS,
+  },
+  {
+    featured: true,
+    align: "right",
+    title: "ULO Report - Dashboard Admin",
+    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
+    image: ULOReport,
+    github: "https://github.com/eridaylm/fe-report-ulo",
+    demo: "https://fe-report-ulo.vercel.app/",
+  },
+  {
+    featured: true,
+    align: "left",
+    title: "Goverment Website - Bandung",
+    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
+    image: Pemerintah,
+    github:
+      "https://github.com/PKL-BC-30/WEB_SEKOLAHAN/tree/main/src/WB_Pemerintahan",
+  },
+  {
+    featured: true,
+    align: "right",
+    title: "Greenify",
+    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    tech: ["HTML", "CSS", "Java Script"],
+    image: Greenify,
+    github: "https://github.com/satrio-telkom/Fusion-Tech",
   },
   {
     featured: false,
@@ -141,56 +181,37 @@ const PROJECTS = [
   },
 ];
 
-const SKILL_GROUPS = [
-  {
-    category: "Frontend",
-    icon: "🎨",
-    skills: [
-      { name: "React / SolidJS", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "CSS", level: 92 },
-      { name: "Next.js", level: 85 },
-    ],
-  },
-  {
-    category: "Backend",
-    icon: "⚙️",
-    skills: [
-      { name: "Node.js", level: 82 },
-      { name: "Python", level: 78 },
-      { name: "PostgreSQL", level: 75 },
-    ],
-  },
-  {
-    category: "Tools",
-    icon: "🛠",
-    skills: [
-      { name: "Git / GitHub", level: 90 },
-      { name: "Railway", level: 72 },
-      { name: "Vercel", level: 68 },
-    ],
-  },
-];
-
 const TOOL_TAGS = [
   "React",
   "SolidJS",
-  "Vue.js",
+  "Rust",
+  "WordPress",
   "TypeScript",
   "Node.js",
   "Python",
-  "GraphQL",
   "PostgreSQL",
   "Figma",
-  "Tailwind CSS",
-  "Docker",
-  "AWS",
+  "CSS",
   "Next.js",
   "Git",
-  "Storybook",
 ];
 
-// ─── ICONS ───────────────────────────────────────────────────────────────────
+const CERTIFICATES = [
+  {
+    title: "Backend Development with Rust",
+    issuer: "Dicoding Indonesia",
+    date: "Jan 2026",
+    credential: "https://credential-link.com",
+    desc: "Completed comprehensive backend development training covering REST APIs, database integration, authentication, and production deployment using Rust.",
+  },
+  {
+    title: "Fullstack Web Development",
+    issuer: "Special Skill Indonesia",
+    date: "Oct 2025",
+    credential: null,
+    desc: "Intensive fullstack training focused on modern frontend frameworks, backend systems, and scalable application architecture.",
+  },
+];
 
 const IconGitHub = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -228,8 +249,6 @@ const IconMail = () => (
     <polyline points="22,6 12,13 2,6" />
   </svg>
 );
-
-// ─── NAVBAR ──────────────────────────────────────────────────────────────────
 
 const Navbar: Component = () => {
   const [scrolled, setScrolled] = createSignal(false);
@@ -295,8 +314,6 @@ const Navbar: Component = () => {
   );
 };
 
-// ─── HERO ────────────────────────────────────────────────────────────────────
-
 const Hero: Component = () => (
   <section class="pf-hero" id="hero">
     <div class="pf-hero__bg">
@@ -344,8 +361,6 @@ const Hero: Component = () => (
   </section>
 );
 
-// ─── ABOUT ───────────────────────────────────────────────────────────────────
-
 const About: Component = () => (
   <section class="pf-about pf-section" id="about">
     <p class="pf-label">Get To Know Me</p>
@@ -359,7 +374,7 @@ const About: Component = () => (
             {" "}
             Telkom University
           </a>{" "}
-          and a Fullstack Web Developer at
+          and Web Developer Intern at
           <a href="https://specialskill.id/" class="pf-link">
             {" "}
             Special Skill Indonesia
@@ -393,8 +408,6 @@ const About: Component = () => (
     </div>
   </section>
 );
-
-// ─── EXPERIENCE ──────────────────────────────────────────────────────────────
 
 const Experience: Component = () => {
   const [active, setActive] = createSignal(0);
@@ -444,8 +457,6 @@ const Experience: Component = () => {
   );
 };
 
-// ─── EDUCATION ───────────────────────────────────────────────────────────────
-
 const Education: Component = () => (
   <section class="pf-section" id="education">
     <p class="pf-label">Academic Background</p>
@@ -487,8 +498,6 @@ const Education: Component = () => (
   </section>
 );
 
-// ─── PROJECTS ────────────────────────────────────────────────────────────────
-
 const Projects: Component = () => (
   <section class="pf-section" id="projects">
     <p class="pf-label">Things I've Built</p>
@@ -504,7 +513,16 @@ const Projects: Component = () => (
                 <span />
                 <span />
               </div>
-              <div class="pf-proj__mockup-body">
+              <div
+                class="pf-proj__mockup-body"
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+              >
                 <img src={p.image} alt={p.title} class="pf-proj__image" />
               </div>
             </div>
@@ -520,9 +538,12 @@ const Projects: Component = () => (
                 </For>
               </div>
               <div class="pf-proj__links">
-                <a href={p.github} class="pf-icon-link" aria-label="GitHub">
-                  <IconGitHub />
-                </a>
+                {p.github && (
+                  <a href={p.github} class="pf-icon-link" aria-label="GitHub">
+                    <IconGitHub />
+                  </a>
+                )}
+
                 {p.demo && (
                   <a href={p.demo} class="pf-icon-link" aria-label="Demo">
                     <IconLink />
@@ -534,77 +555,11 @@ const Projects: Component = () => (
         )}
       </For>
     </div>
-
-    <p class="pf-proj__other-heading">Other Projects</p>
-    <div class="pf-proj__other-grid">
-      <For each={PROJECTS.filter((p) => !p.featured)}>
-        {(p) => (
-          <div class="pf-card pf-proj__card">
-            <div class="pf-proj__card-top">
-              <svg
-                width="26"
-                height="26"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="var(--teal)"
-                stroke-width="1.5"
-              >
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-              </svg>
-              <a href={p.github} class="pf-icon-link">
-                <IconGitHub />
-              </a>
-            </div>
-            <h4 class="pf-proj__card-title">{p.title}</h4>
-            <p class="pf-proj__card-desc">{p.desc}</p>
-            <div class="pf-tags">
-              <For each={p.tech}>
-                {(t) => <span class="pf-tag pf-tag--mono pf-tag--sm">{t}</span>}
-              </For>
-            </div>
-          </div>
-        )}
-      </For>
-    </div>
   </section>
 );
 
-// ─── SKILLS ──────────────────────────────────────────────────────────────────
-
 const Skills: Component = () => (
-  <section class="pf-section" id="skills">
-    <p class="pf-label">What I Can Do</p>
-    <h2 class="pf-title">Skills</h2>
-    <div class="pf-skills__grid">
-      <For each={SKILL_GROUPS}>
-        {(group) => (
-          <div class="pf-card pf-skills__group">
-            <div class="pf-skills__group-header">
-              <span class="pf-skills__icon">{group.icon}</span>
-              <h3 class="pf-skills__cat">{group.category}</h3>
-            </div>
-            <div class="pf-skills__bars">
-              <For each={group.skills}>
-                {(skill) => (
-                  <div class="pf-skills__bar-item">
-                    <div class="pf-skills__bar-label">
-                      <span>{skill.name}</span>
-                      <span class="pf-accent">{skill.level}%</span>
-                    </div>
-                    <div class="pf-skills__track">
-                      <div
-                        class="pf-skills__fill"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </For>
-            </div>
-          </div>
-        )}
-      </For>
-    </div>
+  <section>
     <p class="pf-skills__tag-label">Technologies I work with</p>
     <div class="pf-skills__tags">
       <For each={TOOL_TAGS}>
@@ -613,24 +568,46 @@ const Skills: Component = () => (
     </div>
   </section>
 );
+const Certificates: Component = () => (
+  <section class="pf-section" id="certificates">
+    <p class="pf-label">Professional Achievements</p>
+    <h2 class="pf-title">Certificates</h2>
 
-// ─── CONTACT ─────────────────────────────────────────────────────────────────
+    <div class="pf-cert__list">
+      <For each={CERTIFICATES}>
+        {(cert) => (
+          <div class="pf-cert__card pf-card">
+            <div class="pf-cert__header">
+              <div>
+                <h3 class="pf-cert__title">{cert.title}</h3>
+                <p class="pf-cert__issuer">{cert.issuer}</p>
+              </div>
 
+              <div class="pf-cert__right">
+                <span class="pf-cert__date">{cert.date}</span>
+              </div>
+            </div>
+
+            <p class="pf-cert__desc">{cert.desc}</p>
+
+            {cert.credential && (
+              <a
+                href={cert.credential}
+                target="_blank"
+                class="pf-cert__link-combo"
+                aria-label="Show Credential"
+              >
+                <span>Show Credential</span>
+                <IconLink />
+              </a>
+            )}
+          </div>
+        )}
+      </For>
+    </div>
+  </section>
+);
 const Contact: Component = () => {
-  const [name, setName] = createSignal("");
-  const [email, setEmail] = createSignal("");
-  const [msg, setMsg] = createSignal("");
-  const [sent, setSent] = createSignal(false);
-
-  const handleSubmit = (e: Event) => {
-    e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
-    setName("");
-    setEmail("");
-    setMsg("");
-  };
-
   return (
     <section class="pf-section pf-contact" id="contact">
       <div class="pf-contact__wrap">
@@ -645,15 +622,19 @@ const Contact: Component = () => {
             improving people's lives through accessible design. Have a project?
             Let's connect!
           </p>
-          <a href="mailto:ibrahimmemon920@gmail.com" class="pf-contact__email">
+          <a href="" class="pf-contact__email">
             <div class="pf-contact__email-icon">
               <IconMail />
             </div>
-            <span>ibrahimmemon920@gmail.com</span>
+            <span>eridayalma999@gmail.com</span>
           </a>
           <div class="pf-contact__socials">
             {/* Instagram */}
-            <a href="#" class="pf-social" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/eridaylm"
+              class="pf-social"
+              aria-label="Instagram"
+            >
               <svg
                 width="19"
                 height="19"
@@ -674,7 +655,11 @@ const Contact: Component = () => {
               </svg>
             </a>
             {/* GitHub */}
-            <a href="#" class="pf-social" aria-label="GitHub">
+            <a
+              href="https://github.com/eridaylm"
+              class="pf-social"
+              aria-label="GitHub"
+            >
               <svg
                 width="19"
                 height="19"
@@ -685,7 +670,11 @@ const Contact: Component = () => {
               </svg>
             </a>
             {/* LinkedIn */}
-            <a href="#" class="pf-social" aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com/in/eridayalma-zahra-yohar-832ab6292/"
+              class="pf-social"
+              aria-label="LinkedIn"
+            >
               <svg
                 width="19"
                 height="19"
@@ -710,8 +699,6 @@ const Contact: Component = () => {
   );
 };
 
-// ─── ROOT COMPONENT ──────────────────────────────────────────────────────────
-
 const Portfolio: Component = () => (
   <div class="pf-root">
     <Navbar />
@@ -722,6 +709,7 @@ const Portfolio: Component = () => (
       <Education />
       <Projects />
       <Skills />
+      <Certificates />
       <Contact />
     </main>
   </div>
