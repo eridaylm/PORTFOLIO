@@ -219,7 +219,7 @@ const CERTIFICATES = [
     desc: "Complete the basic JavaScript programming training held by Dicoding Indonesia",
   },
   {
-    title: "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
+    title: "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/0LZ054MQNX65",
