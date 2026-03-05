@@ -114,7 +114,7 @@ const EDUCATIONS = [
 const PROJECTS = [
   {
     title: "TheyyWearr - E Commerce Website",
-    desc: "Modern monitoring dashboard built with Solid.js and TypeScript.",
+    desc: "This is an e-commerce website that sells various items such as bags, clothes, and accessories, and includes a blog. This is a final summative project at SMK Telkom Purwokerto.",
     tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
     github: "https://github.com/PSAJ-WEB/Front-End",
     demo: "https://theyywearr.vercel.app/",
@@ -127,7 +127,7 @@ const PROJECTS = [
     align: "right",
     label: "Featured Project",
     title: "OmniLearn - E Learning Website",
-    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    desc: "This is an e-learning website that contains tech courses such as AI, Cyber Security, OSINT, SOC and language courses such as Japanese, English and German.",
     tech: ["WordPress"],
     image: OmniLearn,
     demo: "https://omnilearn.id/",
@@ -136,7 +136,7 @@ const PROJECTS = [
     featured: true,
     align: "left",
     title: "Learning Management System (LMS)",
-    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    desc: "This is a school website that uses a learning management system that contains 3 roles, namely teacher, student and admin.",
     tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
     image: LMS,
   },
@@ -144,7 +144,7 @@ const PROJECTS = [
     featured: true,
     align: "right",
     title: "ULO Report - Dashboard Admin",
-    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    desc: "ULO Report is a web admin used to view user statistics on the ULO Movie website, which contains revenue and other features.",
     tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
     image: ULOReport,
     github: "https://github.com/eridaylm/fe-report-ulo",
@@ -154,7 +154,7 @@ const PROJECTS = [
     featured: true,
     align: "left",
     title: "Goverment Website - Bandung",
-    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
+    desc: "This is a local government website (Bandung) developed and created using Solid JS and Rust. This is a street vendor project.",
     tech: ["TypeScript", "Solid JS", "Rust", "PostgreSQL", "Railway", "Vercel"],
     image: Pemerintah,
     github:
@@ -198,19 +198,41 @@ const TOOL_TAGS = [
 
 const CERTIFICATES = [
   {
-    title: "Backend Development with Rust",
+    title: "Belajar Dasar AI (Basic Artificial Intelligence)",
     issuer: "Dicoding Indonesia",
-    date: "Jan 2026",
-    credential: "https://credential-link.com",
-    desc: "Completed comprehensive backend development training covering REST APIs, database integration, authentication, and production deployment using Rust.",
+    date: "Oct 2025",
+    credential: "https://www.dicoding.com/certificates/JMZVV4NJ3ZN9",
+    desc: "Complete the basic learning training AI held by Dicoding Indonesia",
   },
   {
-    title: "Fullstack Web Development",
-    issuer: "Special Skill Indonesia",
+    title: "Belajar Dasar Pemrograman Web (Basic Web Programming)",
+    issuer: "Dicoding Indonesia",
     date: "Oct 2025",
-    credential: null,
-    desc: "Intensive fullstack training focused on modern frontend frameworks, backend systems, and scalable application architecture.",
+    credential: "https://www.dicoding.com/certificates/07Z6J43LJXQR",
+    desc: "Complete the basic programming training using HTML CSS held by Dicoding Indonesia",
   },
+  {
+    title: "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
+    issuer: "Dicoding Indonesia",
+    date: "Oct 2025",
+    credential: "https://www.dicoding.com/certificates/1RXYQ2Q7QZVM",
+    desc: "Complete the basic JavaScript programming training held by Dicoding Indonesia",
+  },
+  {
+    title: "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
+    issuer: "Dicoding Indonesia",
+    date: "Oct 2025",
+    credential: "https://www.dicoding.com/certificates/0LZ054MQNX65",
+    desc: "Completed training on learning to create front-end websites using HTML, CSS, and Java Script, held by Dicoding Indonesia.",
+  },
+  {
+    title: "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
+    issuer: "Dicoding Indonesia",
+    date: "Jan 2026",
+    credential: "https://www.dicoding.com/certificates/2VX35QYW3PYQ",
+    desc: "Completed training on learning to create front-end websites using HTML, CSS, and Java Script, held by Dicoding Indonesia.",
+  },
+  
 ];
 
 const IconGitHub = () => (
