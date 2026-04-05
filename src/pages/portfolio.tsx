@@ -5,6 +5,7 @@ import LMS from "../img/LMS.webp";
 import Pemerintah from "../img/PEMERINTAH.webp";
 import ULOReport from "../img/Desktop - 2.webp";
 import Greenify from "../img/dekstop - Home page.webp";
+import StoryApp from "../img/story-app.webp";
 import Erida from "../img/eyi.webp";
 import "./portfolio.css";
 
@@ -179,11 +180,23 @@ const PROJECTS = [
     github: "#",
     demo: null,
   },
+  {
+    featured: true,
+    align: "left",
+    label: "Expert Project",
+    title: "Story App - IDCamp Expert Level",
+    desc: "A modern web application built as part of IDCamp Expert Level program. This project implements accessibility standards, interactive maps, media features, and Progressive Web App (PWA) capabilities. Built using Vue.js starter template with a focus on performance, user experience, and real-world web standards.",
+    tech: ["Vue JS", "PWA", "Web API", "JavaScript", "Vercel"],
+    demo: "https://ceritainweb.vercel.app/",
+    github: "https://github.com/eridaylm/Project-IDCamp-2025-Expert-Level",
+    image: StoryApp,
+  },
 ];
 
 const TOOL_TAGS = [
-  "React",
+  "ReactJS",
   "SolidJS",
+  "Vue.js",
   "Rust",
   "WordPress",
   "TypeScript",
@@ -212,27 +225,36 @@ const CERTIFICATES = [
     desc: "Complete the basic programming training using HTML CSS held by Dicoding Indonesia",
   },
   {
-    title: "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
+    title:
+      "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/1RXYQ2Q7QZVM",
     desc: "Complete the basic JavaScript programming training held by Dicoding Indonesia",
   },
   {
-    title: "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
+    title:
+      "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/0LZ054MQNX65",
     desc: "Completed training on learning to create front-end websites using HTML, CSS, and Java Script, held by Dicoding Indonesia.",
   },
   {
-    title: "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
+    title:
+      "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
     issuer: "Dicoding Indonesia",
     date: "Jan 2026",
     credential: "https://www.dicoding.com/certificates/2VX35QYW3PYQ",
     desc: "Completed training on learning to create front-end websites using HTML, CSS, and Java Script, held by Dicoding Indonesia.",
   },
-  
+  {
+    title: "Belajar Pengembangan Web Intermediate",
+    issuer: "Dicoding Indonesia",
+    date: "Mar 2026",
+    credential: "https://www.dicoding.com/certificates/KEXLQL2GWPG2",
+    desc: "Completed intermediate web development training covering accessibility, animation, media, maps, and Progressive Web Apps (PWA).",
+  },
 ];
 
 const IconGitHub = () => (
@@ -581,7 +603,7 @@ const Projects: Component = () => (
 );
 
 const Skills: Component = () => (
-  <section>
+  <section id="skills" class="pf-section">
     <p class="pf-skills__tag-label">Technologies I work with</p>
     <div class="pf-skills__tags">
       <For each={TOOL_TAGS}>
