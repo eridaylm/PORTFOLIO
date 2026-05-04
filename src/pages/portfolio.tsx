@@ -225,35 +225,67 @@ const CERTIFICATES = [
     desc: "Complete the basic programming training using HTML CSS held by Dicoding Indonesia",
   },
   {
-    title:
-      "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
+    title: "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/1RXYQ2Q7QZVM",
     desc: "Complete the basic JavaScript programming training held by Dicoding Indonesia",
   },
   {
-    title:
-      "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
+    title: "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/0LZ054MQNX65",
     desc: "Completed training on learning to create front-end websites using HTML, CSS, and Java Script, held by Dicoding Indonesia.",
   },
   {
-    title:
-      "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
+    title: "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
     issuer: "Dicoding Indonesia",
     date: "Jan 2026",
     credential: "https://www.dicoding.com/certificates/2VX35QYW3PYQ",
     desc: "Completed training on learning to create front-end websites using HTML, CSS, and Java Script, held by Dicoding Indonesia.",
   },
   {
-    title: "Belajar Pengembangan Web Intermediate",
+    title: "Belajar Pengembangan Web Intermediate (Intermediate Web Development)",
     issuer: "Dicoding Indonesia",
     date: "Mar 2026",
     credential: "https://www.dicoding.com/certificates/KEXLQL2GWPG2",
     desc: "Completed intermediate web development training covering accessibility, animation, media, maps, and Progressive Web Apps (PWA).",
+  },
+  {
+    title: "Spec-Driven Development dengan Kiro (Spec-Driven Development with Kiro)",
+    issuer: "Dicoding Indonesia",
+    date: "26 Apr 2026",
+    credential: "https://www.dicoding.com/certificates/98XW0EKD9XM3",
+    desc: "Mampu menerapkan siklus Spec-Driven Development (dari Requirements, Design, hingga Implementasi Task) menggunakan Kiro untuk membangun fitur aplikasi yang lengkap dan terdokumentasi. (Total 10 jam)",
+  },
+  {
+    title: "Belajar Dasar Cloud dan Gen AI di AWS (Basic Cloud and Gen AI on AWS)",
+    issuer: "Dicoding Indonesia",
+    date: "28 Apr 2026",
+    credential: "https://www.dicoding.com/certificates/ERZRLEEKQZYY",
+    desc: "Memahami AWS Cloud dengan segala jenis layanan, infrastruktur global, hingga harganya, termasuk dukungan AI dari AWS. (Total 13 jam)",
+  },
+  {
+    title: "Memulai Pemrograman dengan Python (Getting Started with Python Programming)",
+    issuer: "Dicoding Indonesia",
+    date: "01 Mei 2026",
+    credential: "https://www.dicoding.com/certificates/OLZ0YR74NX65",
+    desc: "Mampu membuat program dengan Python menggunakan berbagai IDE seperti Visual Studio Code, Jupyter Notebook, dan Google Colaboratory. (Total 60 jam)",
+  },
+  {
+    title: "Belajar Machine Learning untuk Pemula (Machine Learning for Beginners)",
+    issuer: "Dicoding Indonesia",
+    date: "03 Mei 2026",
+    credential: "https://www.dicoding.com/certificates/4EXG13E2QPRL",
+    desc: "Mengembangkan proyek machine learning yang berfokus pada klasifikasi, regresi, dan clustering pada data tabular. (Total 90 jam)",
+  },
+  {
+    title: "Belajar Penerapan AI di Aplikasi Web (Applying AI in Web Applications)",
+    issuer: "Dicoding Indonesia",
+    date: "02 Mei 2026",
+    credential: "https://www.dicoding.com/certificates/KEXLQ7KROPG2",
+    desc: "Mengintegrasikan model yang sudah dilatih (pre-trained model) ke aplikasi web menggunakan berbagai Web API, dengan dukungan mode offline serta fitur instalasi aplikasi (PWA).",
   },
 ];
 
