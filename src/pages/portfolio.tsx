@@ -125,7 +125,7 @@ const NAV_LINKS = [
 const EXPERIENCES = [
   {
     company: "PT. Special Skill Indonesia",
-    role: "Web Developer Intern",
+    role: "Web Developer",
     period: "Mar 2026 — Mei 2026",
     location: "Pekuncen, Banyumas, Jawa Tengah, ID - Remote",
     desc: "Assisting in the development and maintenance of company websites using WordPress. Customizing themes, managing plugins, optimizing website performance, and ensuring responsive design across devices. Collaborating with the development team to implement new features and improve overall user experience.",
