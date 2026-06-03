@@ -165,7 +165,7 @@ const EXPERIENCES = [
   },
   {
     company: "PT. Braincode Solutions",
-    role: "Fullstack Developer Intern",
+    role: "Fullstack Developer",
     period: "Jul 2024 — Nov 2024",
     location: "Sokaraja, Banyumas, Jawa Tengah, ID",
     desc: "Contributed to the end-to-end development of various client projects including LMS platforms, government systems, monitoring dashboards, admin reporting tools, and streaming-style web applications. Transformed functional requirements into scalable, maintainable, and production-ready solutions.",
