@@ -119,6 +119,45 @@ body::before {
   }
 }
 
+/* ─── SCROLL REVEAL ──────────────────────────────────────────────────────────── */
+
+/* Base: hidden state */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* Variants — different entry directions */
+.reveal--fade-up   { transform: translateY(40px); }
+.reveal--from-left { transform: translateX(-56px); }
+.reveal--from-right{ transform: translateX(56px); }
+.reveal--scale     { transform: scale(0.88) translateY(20px); }
+
+/* Revealed state — back to identity */
+.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── STAGGER SYSTEM ──────────────────────────────────────────────────────────── */
+.stagger-child {
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+.stagger-visible {
+  opacity: 1;
+  transform: none;
+}
+
+
 /* ─── ROOT LAYOUT ────────────────────────────────────────────────────────────── */
 .pf-root {
   position: relative;
@@ -157,10 +196,20 @@ body::before {
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 56px;
+  width: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--teal), transparent);
+  background: linear-gradient(90deg, var(--teal), var(--cyan), transparent);
   border-radius: 2px;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+/* Animate underline when section is revealed */
+.revealed.pf-title::after,
+.revealed ~ * .pf-title::after {
+  width: 72px;
+}
+/* Standalone revealed title */
+.pf-title.revealed::after {
+  width: 72px;
 }
 .pf-accent {
   color: var(--teal);
@@ -185,10 +234,34 @@ body::before {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+/* Shimmer sweep on hover */
+.pf-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(0, 201, 177, 0.06) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  background-position: 200% 0;
+  transition: background-position 0.6s ease;
+  pointer-events: none;
+  border-radius: inherit;
 }
 .pf-card:hover {
-  border-color: rgba(0, 201, 177, 0.25);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  border-color: rgba(0, 201, 177, 0.35);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(0,201,177,0.08);
+  transform: translateY(-3px);
+}
+.pf-card:hover::before {
+  background-position: -200% 0;
 }
 
 /* Badge */
@@ -261,9 +334,24 @@ body::before {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
   border: none;
+  position: relative;
+  overflow: hidden;
+}
+/* Ripple gleam effect */
+.pf-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: 200% 0;
+  transition: background-position 0.5s ease;
+}
+.pf-btn:hover::after {
+  background-position: -200% 0;
 }
 .pf-btn--primary {
   background: linear-gradient(135deg, var(--bright), var(--teal));
@@ -271,9 +359,9 @@ body::before {
   box-shadow: 0 4px 20px rgba(0, 201, 177, 0.28);
 }
 .pf-btn--primary:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   color: var(--deep);
-  box-shadow: 0 8px 30px rgba(0, 201, 177, 0.48);
+  box-shadow: 0 12px 36px rgba(0, 201, 177, 0.52);
 }
 .pf-btn--ghost {
   background: transparent;
@@ -283,8 +371,9 @@ body::before {
 .pf-btn--ghost:hover {
   border-color: var(--teal);
   color: var(--teal);
-  transform: translateY(-3px);
-  background: rgba(0, 201, 177, 0.05);
+  transform: translateY(-4px);
+  background: rgba(0, 201, 177, 0.06);
+  box-shadow: 0 8px 28px rgba(0, 201, 177, 0.15);
 }
 
 /* Icon links */
@@ -636,7 +725,7 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.7) translateX(-10px) translateY(-45px);
+  transform: scale(1.4) translateX(7px) translateY(20px);
 }
 .pf-hero__ring {
   position: absolute;
@@ -685,10 +774,12 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
+/* Animated gradient top bar that reveals on hover */
 .pf-stat::before {
   content: "";
   position: absolute;
@@ -696,17 +787,24 @@ body::before {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--bright), var(--teal));
+  background: linear-gradient(90deg, var(--bright), var(--teal), var(--cyan));
+  background-size: 200% 100%;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s ease;
+  animation: gradientSlide 3s linear infinite paused;
 }
-.pf-stat:hover {
-  border-color: rgba(0, 201, 177, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+@keyframes gradientSlide {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
 }
 .pf-stat:hover::before {
   opacity: 1;
+  animation-play-state: running;
+}
+.pf-stat:hover {
+  border-color: rgba(0, 201, 177, 0.38);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0,201,177,0.1);
 }
 .pf-stat__val {
   font-family: var(--ff-disp);
@@ -842,8 +940,13 @@ body::before {
   border-radius: 50%;
   background: var(--teal);
   border: 3px solid var(--deep);
-  box-shadow: 0 0 12px rgba(0, 201, 177, 0.55);
+  box-shadow: 0 0 0 0 rgba(0, 201, 177, 0.4);
   z-index: 1;
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 201, 177, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(0, 201, 177, 0); }
 }
 .pf-edu__line {
   position: absolute;
@@ -852,6 +955,12 @@ body::before {
   bottom: 0;
   width: 2px;
   background: linear-gradient(180deg, var(--teal), rgba(0, 201, 177, 0.08));
+  transform-origin: top;
+  animation: lineGrow 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes lineGrow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
 }
 .pf-edu__card {
   transition: all 0.3s ease;
@@ -935,8 +1044,10 @@ body::before {
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+  cursor: default;
 }
 .pf-proj__mockup-body {
   padding: 0;
@@ -964,10 +1075,9 @@ body::before {
 }
 
 .pf-proj__mockup:hover {
-  transform: translateY(-6px);
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(0, 201, 177, 0.18);
+    0 32px 80px rgba(0, 0, 0, 0.45),
+    0 0 50px rgba(0, 201, 177, 0.22);
 }
 .pf-proj__mockup-bar {
   display: flex;
@@ -1088,15 +1198,29 @@ body::before {
   background: rgba(6, 40, 64, 0.8);
   border: 1px solid rgba(0, 201, 177, 0.13);
   color: var(--txt-2);
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.pf-skills__tag::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 120%, rgba(0,201,177,0.18) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .pf-skills__tag:hover {
   background: rgba(0, 201, 177, 0.1);
-  border-color: rgba(0, 201, 177, 0.38);
+  border-color: rgba(0, 201, 177, 0.45);
   color: var(--light);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 201, 177, 0.1);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 4px 20px rgba(0, 201, 177, 0.18), 0 0 0 1px rgba(0,201,177,0.15);
+}
+.pf-skills__tag:hover::before {
+  opacity: 1;
 }
 
 /* ─── CONTACT ────────────────────────────────────────────────────────────────── */
@@ -1328,6 +1452,24 @@ body::before {
   opacity: 0.8;
 }
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+
+/* Tablet large */
+@media (max-width: 1024px) {
+  .pf-main {
+    padding: 0 1.5rem;
+  }
+  .pf-proj__featured {
+    gap: 2rem;
+  }
+  .pf-about__grid {
+    gap: 2.5rem;
+  }
+  .pf-exp__layout {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+/* Tablet */
 @media (max-width: 900px) {
   .pf-hero {
     flex-direction: column;
@@ -1341,6 +1483,8 @@ body::before {
   }
   .pf-hero__desc {
     max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .pf-hero__avatar {
     width: 240px;
@@ -1353,9 +1497,26 @@ body::before {
   .pf-hero__avatar-inner span {
     font-size: 2.4rem;
   }
+  .pf-proj__featured {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .pf-proj__featured--right > * {
+    direction: ltr;
+  }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
+  .pf-section {
+    padding: 70px 0;
+  }
+  .pf-nav {
+    padding: 1rem 1.2rem;
+  }
+  .pf-nav--blur {
+    padding: 0.7rem 1.2rem;
+  }
   .pf-nav__burger {
     display: flex;
   }
@@ -1385,10 +1546,16 @@ body::before {
     text-align: left;
   }
 
+  /* About */
   .pf-about__grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
+  .pf-about__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Experience */
   .pf-exp__layout {
     grid-template-columns: 1fr;
   }
@@ -1397,6 +1564,10 @@ body::before {
     overflow-x: auto;
     border-left: none;
     border-bottom: 2px solid var(--mid);
+    scrollbar-width: none;
+  }
+  .pf-exp__tabs::-webkit-scrollbar {
+    display: none;
   }
   .pf-exp__tab {
     border-left: none;
@@ -1404,6 +1575,7 @@ body::before {
     margin-left: 0;
     margin-bottom: -2px;
     white-space: nowrap;
+    min-width: fit-content;
   }
   .pf-exp__tab--active {
     border-bottom-color: var(--teal);
@@ -1412,29 +1584,134 @@ body::before {
   .pf-exp__right {
     align-items: flex-start;
   }
+  .pf-exp__card {
+    padding: 1.4rem;
+  }
+  .pf-exp__header {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  /* Education */
+  .pf-edu__timeline {
+    padding-left: 1rem;
+  }
+  .pf-edu__item {
+    padding-left: 1.4rem;
+  }
   .pf-edu__top {
     flex-direction: column;
   }
   .pf-edu__right {
     align-items: flex-start;
   }
+  .pf-edu__card {
+    padding: 1.3rem;
+  }
+
+  /* Projects */
   .pf-proj__featured {
     grid-template-columns: 1fr;
     direction: ltr;
+    gap: 1.5rem;
   }
   .pf-proj__featured--right > * {
     direction: ltr;
   }
+  .pf-proj__featured-list {
+    gap: 3rem;
+  }
+  .pf-proj__title {
+    font-size: 1.25rem;
+  }
+
+  /* Skills */
   .pf-skills__grid {
     grid-template-columns: 1fr;
   }
+
+  /* Certificates */
+  .pf-cert__header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .pf-cert__right {
+    align-items: flex-start;
+  }
+  .pf-cert__card {
+    padding: 1.3rem;
+  }
+
+  /* Contact */
   .pf-contact__wrap {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
+
+  /* Footer */
   .pf-footer {
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
+  }
+
+  /* Title */
+  .pf-title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .pf-main {
+    padding: 0 1rem;
+  }
+  .pf-hero__name {
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+  }
+  .pf-hero__cta {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pf-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .pf-about__stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .pf-stat {
+    padding: 1rem;
+  }
+  .pf-stat__val {
+    font-size: 1.7rem;
+  }
+  .pf-skills__tags {
+    gap: 0.5rem;
+  }
+  .pf-skills__tag {
+    font-size: 0.76rem;
+    padding: 0.35rem 0.8rem;
+  }
+  .pf-exp__tab-co {
+    font-size: 0.8rem;
+  }
+  .pf-exp__tab {
+    padding: 0.7rem 0.9rem;
+  }
+  .pf-hero__avatar {
+    width: 200px;
+    height: 200px;
+  }
+  .pf-hero__avatar-inner {
+    width: 155px;
+    height: 155px;
+  }
+  .pf-cert__title {
+    font-size: 0.95rem;
+  }
+  .pf-proj__mockup-body {
+    aspect-ratio: 16 / 11;
   }
 }

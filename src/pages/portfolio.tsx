@@ -6,8 +6,111 @@ import Pemerintah from "../img/PEMERINTAH.webp";
 import ULOReport from "../img/Desktop - 2.webp";
 import Greenify from "../img/dekstop - Home page.webp";
 import StoryApp from "../img/story-app.webp";
-import Erida from "../img/eyi.webp";
+import Erida from "../img/fotoo.webp";
 import "./portfolio.css";
+
+/* ── Scroll-reveal + stagger hook ── */
+function useReveal() {
+  onMount(() => {
+    // Standard reveal observer
+    const revealObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            revealObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
+
+    // Stagger children observer — when parent enters viewport, children animate in cascade
+    const staggerObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const children = entry.target.querySelectorAll(".stagger-child");
+            children.forEach((child, i) => {
+              setTimeout(() => child.classList.add("stagger-visible"), i * 80);
+            });
+            staggerObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll(".stagger-parent").forEach((el) => staggerObs.observe(el));
+
+    // Counter animation for stats
+    const counterObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.target || "0", 10);
+            const suffix = el.dataset.suffix || "";
+            const dur = 1400;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const pct = Math.min((now - start) / dur, 1);
+              const ease = 1 - Math.pow(1 - pct, 3); // ease-out cubic
+              el.textContent = Math.floor(ease * target) + suffix;
+              if (pct < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+            counterObs.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    document.querySelectorAll(".count-up").forEach((el) => counterObs.observe(el));
+
+    // Tilt effect on project mockups
+    const tiltEls = document.querySelectorAll(".pf-proj__mockup");
+    const tiltHandlers: Map<Element, () => void> = new Map();
+    tiltEls.forEach((el) => {
+      const onMove = (e: Event) => {
+        const me = e as MouseEvent;
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const x = (me.clientX - rect.left) / rect.width - 0.5;
+        const y = (me.clientY - rect.top) / rect.height - 0.5;
+        (el as HTMLElement).style.transform =
+          `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg) translateY(-6px)`;
+      };
+      const onLeave = () => {
+        (el as HTMLElement).style.transform = "";
+      };
+      el.addEventListener("mousemove", onMove);
+      el.addEventListener("mouseleave", onLeave);
+      tiltHandlers.set(el, onLeave);
+    });
+
+    // Hero avatar parallax on mouse
+    const avatar = document.querySelector(".pf-hero__avatar") as HTMLElement | null;
+    const heroParallax = (e: Event) => {
+      const me = e as MouseEvent;
+      if (!avatar) return;
+      const xPct = (me.clientX / window.innerWidth - 0.5) * 18;
+      const yPct = (me.clientY / window.innerHeight - 0.5) * 12;
+      avatar.style.transform = `translate(${xPct}px, ${yPct}px)`;
+    };
+    window.addEventListener("mousemove", heroParallax);
+
+    onCleanup(() => {
+      revealObs.disconnect();
+      staggerObs.disconnect();
+      counterObs.disconnect();
+      tiltEls.forEach((el) => {
+        const cleanup = tiltHandlers.get(el);
+        if (cleanup) el.removeEventListener("mouseleave", cleanup);
+      });
+      window.removeEventListener("mousemove", heroParallax);
+    });
+  });
+}
 
 const NAV_LINKS = [
   "About",
@@ -23,11 +126,11 @@ const EXPERIENCES = [
   {
     company: "PT. Special Skill Indonesia",
     role: "Web Developer Intern",
-    period: "Mar 2026 — Present",
+    period: "Mar 2026 — Mei 2026",
     location: "Pekuncen, Banyumas, Jawa Tengah, ID - Remote",
     desc: "Assisting in the development and maintenance of company websites using WordPress. Customizing themes, managing plugins, optimizing website performance, and ensuring responsive design across devices. Collaborating with the development team to implement new features and improve overall user experience.",
     tech: ["WordPress", "PHP", "Laravel"],
-    current: true,
+    current: false,
   },
   {
     company: "Freelancer",
@@ -274,18 +377,18 @@ const CERTIFICATES = [
     desc: "Completed Python programming training, including syntax, data structures, OOP, unit testing, and popular libraries for web development and data processing. (Total 60 hours)",
   },
   {
-    title: "Belajar Machine Learning untuk Pemula (Machine Learning for Beginners)",
-    issuer: "Dicoding Indonesia",
-    date: "03 Mei 2026",
-    credential: "https://www.dicoding.com/certificates/4EXG13E2QPRL",
-    desc: "Completed machine learning training covering supervised learning (classification & regression), unsupervised learning (clustering), feature engineering, and hyperparameter tuning on tabular data. (Total 90 hours)",
-  },
-  {
     title: "Belajar Penerapan AI di Aplikasi Web (Applying AI in Web Applications)",
     issuer: "Dicoding Indonesia",
     date: "02 Mei 2026",
     credential: "https://www.dicoding.com/certificates/KEXLQ7KROPG2",
     desc: "Completed training on integrating pre-trained AI models into web applications using Web APIs, with support for offline mode and PWA installation features.",
+  },
+  {
+    title: "Belajar Machine Learning untuk Pemula (Machine Learning for Beginners)",
+    issuer: "Dicoding Indonesia",
+    date: "03 Mei 2026",
+    credential: "https://www.dicoding.com/certificates/4EXG13E2QPRL",
+    desc: "Completed machine learning training covering supervised learning (classification & regression), unsupervised learning (clustering), feature engineering, and hyperparameter tuning on tabular data. (Total 90 hours)",
   },
 ];
 
@@ -408,7 +511,7 @@ const Hero: Component = () => (
       <div class="pf-hero__roles">
         <span class="pf-hero__role">Software Engineer</span>
         <span class="pf-hero__dot">·</span>
-        <span class="pf-hero__subrole">Fullstack Developer</span>
+        <span class="pf-hero__subrole">Fullstack Web Developer</span>
       </div>
       <p class="pf-hero__desc">
         Fullstack Web Developer specializing in Solid.js, Rust, and Node.js. I
@@ -439,10 +542,10 @@ const Hero: Component = () => (
 
 const About: Component = () => (
   <section class="pf-about pf-section" id="about">
-    <p class="pf-label">Get To Know Me</p>
-    <h2 class="pf-title">About Me</h2>
+    <p class="pf-label reveal reveal--fade-up">Get To Know Me</p>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">About Me</h2>
     <div class="pf-about__grid">
-      <div class="pf-about__text">
+      <div class="pf-about__text reveal reveal--fade-up" style="transition-delay:0.15s">
         <p>
           Hello! I'm <strong>Eridayalma Zahra Yohar</strong>, an Informatics
           Engineering student at
@@ -450,11 +553,6 @@ const About: Component = () => (
             {" "}
             Telkom University
           </a>{" "}
-          and Web Developer Intern at
-          <a href="https://specialskill.id/" class="pf-link">
-            {" "}
-            Special Skill Indonesia
-          </a>
           .
         </p>
 
@@ -468,15 +566,19 @@ const About: Component = () => (
           experiences.
         </p>
       </div>
-      <div class="pf-about__stats">
+      <div class="pf-about__stats stagger-parent">
         {[
-          { val: "3+", label: "Years Experience" },
-          { val: "8+", label: "Projects Done" },
-          { val: "10+", label: "Skills" },
-          { val: "14+", label: "Certifications" },
+          { num: 3, suffix: "+", label: "Years Experience" },
+          { num: 6, suffix: "+", label: "Projects Done" },
+          { num: 12, suffix: "+", label: "Skills" },
+          { num: 10, suffix: "+", label: "Certifications" },
         ].map((s) => (
-          <div class="pf-stat">
-            <span class="pf-stat__val">{s.val}</span>
+          <div class="pf-stat stagger-child reveal reveal--scale">
+            <span
+              class="pf-stat__val count-up"
+              data-target={String(s.num)}
+              data-suffix={s.suffix}
+            >0{s.suffix}</span>
             <span class="pf-stat__label">{s.label}</span>
           </div>
         ))}
@@ -489,9 +591,9 @@ const Experience: Component = () => {
   const [active, setActive] = createSignal(0);
   return (
     <section class="pf-section" id="experience">
-      <p class="pf-label">Where I've Worked</p>
-      <h2 class="pf-title">Work Experience</h2>
-      <div class="pf-exp__layout">
+      <p class="pf-label reveal reveal--fade-up">Where I've Worked</p>
+      <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Work Experience</h2>
+      <div class="pf-exp__layout reveal reveal--fade-up" style="transition-delay:0.2s">
         <div class="pf-exp__tabs">
           <For each={EXPERIENCES}>
             {(exp, i) => (
@@ -535,12 +637,12 @@ const Experience: Component = () => {
 
 const Education: Component = () => (
   <section class="pf-section" id="education">
-    <p class="pf-label">Academic Background</p>
-    <h2 class="pf-title">Education</h2>
+    <p class="pf-label reveal reveal--fade-up">Academic Background</p>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Education</h2>
     <div class="pf-edu__timeline">
       <For each={EDUCATIONS}>
         {(edu, i) => (
-          <div class="pf-edu__item">
+          <div class="pf-edu__item reveal reveal--from-left" style={`transition-delay:${0.1 + i() * 0.15}s`}>
             <div class="pf-edu__dot" />
             {i() < EDUCATIONS.length - 1 && <div class="pf-edu__line" />}
             <div class="pf-card pf-edu__card">
@@ -576,13 +678,13 @@ const Education: Component = () => (
 
 const Projects: Component = () => (
   <section class="pf-section" id="projects">
-    <p class="pf-label">Things I've Built</p>
-    <h2 class="pf-title">Projects</h2>
+    <p class="pf-label reveal reveal--fade-up">Things I've Built</p>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Projects</h2>
 
     <div class="pf-proj__featured-list">
       <For each={PROJECTS.filter((p) => p.featured)}>
         {(p) => (
-          <div class={`pf-proj__featured pf-proj__featured--${p.align}`}>
+          <div class={`pf-proj__featured pf-proj__featured--${p.align} reveal ${p.align === "left" ? "reveal--from-left" : "reveal--from-right"}`}>
             <div class="pf-proj__mockup">
               <div class="pf-proj__mockup-bar">
                 <span />
@@ -636,23 +738,23 @@ const Projects: Component = () => (
 
 const Skills: Component = () => (
   <section id="skills" class="pf-section">
-    <p class="pf-skills__tag-label">Technologies I work with</p>
-    <div class="pf-skills__tags">
+    <p class="pf-skills__tag-label reveal reveal--fade-up">Technologies I work with</p>
+    <div class="pf-skills__tags stagger-parent reveal reveal--fade-up" style="transition-delay:0.1s">
       <For each={TOOL_TAGS}>
-        {(t) => <span class="pf-skills__tag">{t}</span>}
+        {(t) => <span class="pf-skills__tag stagger-child">{t}</span>}
       </For>
     </div>
   </section>
 );
 const Certificates: Component = () => (
   <section class="pf-section" id="certificates">
-    <p class="pf-label">Professional Achievements</p>
-    <h2 class="pf-title">Certificates</h2>
+    <p class="pf-label reveal reveal--fade-up">Professional Achievements</p>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Certificates</h2>
 
-    <div class="pf-cert__list">
+    <div class="pf-cert__list stagger-parent">
       <For each={CERTIFICATES}>
-        {(cert) => (
-          <div class="pf-cert__card pf-card">
+        {(cert, i) => (
+          <div class="pf-cert__card pf-card stagger-child reveal reveal--fade-up">
             <div class="pf-cert__header">
               <div>
                 <h3 class="pf-cert__title">{cert.title}</h3>
@@ -687,7 +789,7 @@ const Contact: Component = () => {
   return (
     <section class="pf-section pf-contact" id="contact">
       <div class="pf-contact__wrap">
-        <div class="pf-contact__info">
+        <div class="pf-contact__info reveal reveal--fade-up">
           <p class="pf-label">Get In Touch</p>
           <h2 class="pf-title" style="margin-bottom:1.2rem">
             Contact
@@ -775,20 +877,23 @@ const Contact: Component = () => {
   );
 };
 
-const Portfolio: Component = () => (
-  <div class="pf-root">
-    <Navbar />
-    <main class="pf-main">
-      <Hero />
-      <About />
-      <Experience />
-      <Education />
-      <Projects />
-      <Skills />
-      <Certificates />
-      <Contact />
-    </main>
-  </div>
-);
+const Portfolio: Component = () => {
+  useReveal();
+  return (
+    <div class="pf-root">
+      <Navbar />
+      <main class="pf-main">
+        <Hero />
+        <About />
+        <Experience />
+        <Education />
+        <Projects />
+        <Skills />
+        <Certificates />
+        <Contact />
+      </main>
+    </div>
+  );
+};
 
 export default Portfolio;
