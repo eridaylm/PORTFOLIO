@@ -849,7 +849,7 @@ const Contact: Component = () => {
             </a>
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/eridayalma-zahra-yohar-832ab6292/"
+              href="https://www.linkedin.com/in/eridayalma-zy/"
               class="pf-social"
               aria-label="LinkedIn"
             >
