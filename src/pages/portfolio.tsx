@@ -133,7 +133,7 @@ const EXPERIENCES = [
   {
     company: "Xolvon Collective",
     role: "Web Developer Intern",
-    period: "Jul 2026 — Aug 2026",
+    period: "Aug 2026 — Present",
     location: "Remote",
     desc: "Selected for a remote, project-based internship focused on modern full-stack web development. The program covers responsive web design, interactive user interfaces, REST API development, database integration, user authentication, and secure coding practices using modern web technologies.",
     tech: [
