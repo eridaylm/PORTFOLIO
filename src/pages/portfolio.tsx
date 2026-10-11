@@ -135,19 +135,21 @@ const EXPERIENCES = [
     role: "Web Developer Intern",
     period: "Aug 2026 — Present",
     location: "Remote",
-    desc: "Selected for a remote, project-based internship focused on modern full-stack web development. The program covers responsive web design, interactive user interfaces, REST API development, database integration, user authentication, and secure coding practices using modern web technologies.",
+    desc: "Developing full-stack web applications with a mobile-first approach using Next.js (App Router), React, TypeScript, Tailwind CSS, and shadcn/ui. Implementing high-performance edge architectures with Next.js Server Actions, Cloudflare Workers, and Cloudflare Pages. Managing database & storage using Cloudflare D1 (relational database) and R2 (object storage) replacing Supabase, alongside a Dual Role Authentication system (Admin & User).",
     tech: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "REST API",
-      "JWT",
-      "bcrypt",
+      "Next.js (App Router)",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Next.js Server Actions",
+      "Cloudflare Workers",
+      "Cloudflare Pages",
+      "Cloudflare D1",
+      "Cloudflare R2",
+      "Dual Role Auth",
     ],
-    current: false,
+    current: true,
   },
   {
     company: "Codveda Technologies",
@@ -344,7 +346,7 @@ const PROJECTS = [
     align: "right",
     label: "Mar 2025 — Mei 2025",
     title: "Special Skill - Company Website",
-    desc: "Assisting in the development and maintenance of company websites using WordPress. Customizing themes, managing plugins, optimizing website performance, and ensuring responsive design across devices to deliver an engaging digital learning platform.",
+    desc: "Developed dedicated landing pages for Intensive Class and Partner Camp using WordPress. Responsible for digital content management, including publishing training event schedules and job vacancy listings, while ensuring a responsive layout and seamless user experience.",
     tech: [
       "WordPress Development",
       "Web Development",
@@ -352,6 +354,7 @@ const PROJECTS = [
       "Time Management",
     ],
     image: SpecialSkill,
+    imageStyle: "margin-top: -18%;",
   },
 ];
 
@@ -811,7 +814,12 @@ const Projects: Component = () => (
                   });
                 }}
               >
-                <img src={p.image} alt={p.title} class="pf-proj__image" />
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  class="pf-proj__image"
+                  style={p.imageStyle || ""}
+                />
               </div>
             </div>
             <div class="pf-proj__info">
