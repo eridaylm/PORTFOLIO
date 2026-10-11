@@ -6,6 +6,7 @@ import Pemerintah from "../img/PEMERINTAH.webp";
 import ULOReport from "../img/Desktop - 2.webp";
 import Greenify from "../img/dekstop - Home page.webp";
 import StoryApp from "../img/story-app.webp";
+import SpecialSkill from "../img/SpecialSkill.webp";
 import Erida from "../img/fotoo.webp";
 import "./portfolio.css";
 
@@ -22,7 +23,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
 
@@ -39,9 +40,11 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.08 },
     );
-    document.querySelectorAll(".stagger-parent").forEach((el) => staggerObs.observe(el));
+    document
+      .querySelectorAll(".stagger-parent")
+      .forEach((el) => staggerObs.observe(el));
 
     // Counter animation for stats
     const counterObs = new IntersectionObserver(
@@ -64,9 +67,11 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.4 },
     );
-    document.querySelectorAll(".count-up").forEach((el) => counterObs.observe(el));
+    document
+      .querySelectorAll(".count-up")
+      .forEach((el) => counterObs.observe(el));
 
     // Tilt effect on project mockups
     const tiltEls = document.querySelectorAll(".pf-proj__mockup");
@@ -89,7 +94,9 @@ function useReveal() {
     });
 
     // Hero avatar parallax on mouse
-    const avatar = document.querySelector(".pf-hero__avatar") as HTMLElement | null;
+    const avatar = document.querySelector(
+      ".pf-hero__avatar",
+    ) as HTMLElement | null;
     const heroParallax = (e: Event) => {
       const me = e as MouseEvent;
       if (!avatar) return;
@@ -123,6 +130,44 @@ const NAV_LINKS = [
 ];
 
 const EXPERIENCES = [
+  {
+    company: "Xolvon Collective",
+    role: "Web Developer Intern",
+    period: "Jul 2026 — Aug 2026",
+    location: "Remote",
+    desc: "Selected for a remote, project-based internship focused on modern full-stack web development. The program covers responsive web design, interactive user interfaces, REST API development, database integration, user authentication, and secure coding practices using modern web technologies.",
+    tech: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT",
+      "bcrypt",
+    ],
+    current: false,
+  },
+  {
+    company: "Codveda Technologies",
+    role: "Web Developer",
+    period: "Jul 2026 — Aug 2026",
+    location: "India - Remote",
+    desc: "Selected for a remote, project-based internship focused on modern full-stack web development. Built responsive websites and interactive UIs using HTML5, CSS3, and Vanilla JavaScript, while developing a full-stack CRUD application with a REST API using Node.js, Express.js, and MongoDB. Implemented JWT authentication, bcrypt password hashing, and session management while following modular coding practices and learning deployment workflows.",
+    tech: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "REST API",
+      "JWT",
+      "bcrypt",
+    ],
+    current: false,
+  },
   {
     company: "PT. Special Skill Indonesia",
     role: "Web Developer",
@@ -268,8 +313,8 @@ const PROJECTS = [
     featured: true,
     align: "right",
     title: "Greenify",
-    desc: "A full-stack platform connecting job seekers with opportunities. Features an intelligent matching algorithm, real-time notifications, and a sleek dashboard for tracking applications.",
-    tech: ["HTML", "CSS", "Java Script"],
+    desc: "A responsive front-end website promoting sustainable waste management and recycling. Features an interactive landing page, waste value estimation interface, recycling educational content, and a digital marketplace showcasing eco-friendly products, all wrapped in a clean, nature-inspired design.",
+    tech: ["HTML", "CSS", "JavaScript"],
     image: Greenify,
     github: "https://github.com/satrio-telkom/Fusion-Tech",
   },
@@ -293,6 +338,20 @@ const PROJECTS = [
     demo: "https://ceritainweb.vercel.app/",
     github: "https://github.com/eridaylm/Project-IDCamp-2025-Expert-Level",
     image: StoryApp,
+  },
+  {
+    featured: true,
+    align: "right",
+    label: "Mar 2025 — Mei 2025",
+    title: "Special Skill - Company Website",
+    desc: "Assisting in the development and maintenance of company websites using WordPress. Customizing themes, managing plugins, optimizing website performance, and ensuring responsive design across devices to deliver an engaging digital learning platform.",
+    tech: [
+      "WordPress Development",
+      "Web Development",
+      "Critical Thinking",
+      "Time Management",
+    ],
+    image: SpecialSkill,
   },
 ];
 
@@ -328,67 +387,97 @@ const CERTIFICATES = [
     desc: "Completed basic web programming training covering HTML and CSS fundamentals.",
   },
   {
-    title: "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
+    title:
+      "Belajar Dasar Pemrograman JavaScript (JavaScript Programming Basics)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/1RXYQ2Q7QZVM",
     desc: "Completed basic JavaScript programming training, including syntax, data types, functions, and DOM manipulation.",
   },
   {
-    title: "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
+    title:
+      "Belajar Membuat Front-End Web untuk Pemula (Front-End Web Development for Beginners)",
     issuer: "Dicoding Indonesia",
     date: "Oct 2025",
     credential: "https://www.dicoding.com/certificates/0LZ054MQNX65",
     desc: "Completed front-end web development training using HTML, CSS, and JavaScript to build interactive websites.",
   },
   {
-    title: "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
+    title:
+      "Belajar Fundamental Front-End Web Development (Front-End Web Development Fundamentals)",
     issuer: "Dicoding Indonesia",
     date: "Jan 2026",
     credential: "https://www.dicoding.com/certificates/2VX35QYW3PYQ",
     desc: "Completed advanced front-end development training covering modern JavaScript, web components, and build tools.",
   },
   {
-    title: "Belajar Pengembangan Web Intermediate (Intermediate Web Development)",
+    title:
+      "Belajar Pengembangan Web Intermediate (Intermediate Web Development)",
     issuer: "Dicoding Indonesia",
     date: "Mar 2026",
     credential: "https://www.dicoding.com/certificates/KEXLQL2GWPG2",
     desc: "Completed intermediate web development training covering accessibility, animation, media, maps, and Progressive Web Apps (PWA).",
   },
   {
-    title: "Spec-Driven Development dengan Kiro (Spec-Driven Development with Kiro)",
+    title:
+      "Spec-Driven Development dengan Kiro (Spec-Driven Development with Kiro)",
     issuer: "Dicoding Indonesia",
     date: "26 Apr 2026",
     credential: "https://www.dicoding.com/certificates/98XW0EKD9XM3",
     desc: "Completed Spec-Driven Development training using Kiro, covering requirements analysis, design, and implementation cycles to build complete and documented application features. (Total 10 hours)",
   },
   {
-    title: "Belajar Dasar Cloud dan Gen AI di AWS (Basic Cloud and Gen AI on AWS)",
+    title:
+      "Belajar Dasar Cloud dan Gen AI di AWS (Basic Cloud and Gen AI on AWS)",
     issuer: "Dicoding Indonesia",
     date: "28 Apr 2026",
     credential: "https://www.dicoding.com/certificates/ERZRLEEKQZYY",
     desc: "Completed AWS cloud computing training, covering global infrastructure, core services, pricing models, and generative AI support on AWS. (Total 13 hours)",
   },
   {
-    title: "Memulai Pemrograman dengan Python (Getting Started with Python Programming)",
+    title:
+      "Memulai Pemrograman dengan Python (Getting Started with Python Programming)",
     issuer: "Dicoding Indonesia",
     date: "01 Mei 2026",
     credential: "https://www.dicoding.com/certificates/OLZ0YR74NX65",
     desc: "Completed Python programming training, including syntax, data structures, OOP, unit testing, and popular libraries for web development and data processing. (Total 60 hours)",
   },
   {
-    title: "Belajar Penerapan AI di Aplikasi Web (Applying AI in Web Applications)",
+    title:
+      "Belajar Penerapan AI di Aplikasi Web (Applying AI in Web Applications)",
     issuer: "Dicoding Indonesia",
     date: "02 Mei 2026",
     credential: "https://www.dicoding.com/certificates/KEXLQ7KROPG2",
     desc: "Completed training on integrating pre-trained AI models into web applications using Web APIs, with support for offline mode and PWA installation features.",
   },
   {
-    title: "Belajar Machine Learning untuk Pemula (Machine Learning for Beginners)",
+    title:
+      "Belajar Machine Learning untuk Pemula (Machine Learning for Beginners)",
     issuer: "Dicoding Indonesia",
     date: "03 Mei 2026",
     credential: "https://www.dicoding.com/certificates/4EXG13E2QPRL",
     desc: "Completed machine learning training covering supervised learning (classification & regression), unsupervised learning (clustering), feature engineering, and hyperparameter tuning on tabular data. (Total 90 hours)",
+  },
+  {
+    title: "Learn Data Science Applications with Microsoft Fabric",
+    issuer: "Dicoding Indonesia",
+    date: "Jun 2026",
+    credential: "https://www.dicoding.com/certificates/2VX30EN13XYQ",
+    desc: "Completed training on data science applications using Microsoft Fabric, covering data analytics and data science workflows.",
+  },
+  {
+    title: "Learn Fundamental Deep Learning",
+    issuer: "Dicoding Indonesia",
+    date: "Jul 2026",
+    credential: "https://www.dicoding.com/certificates/2VX30Q2YQXYQ",
+    desc: "Completed fundamental deep learning training covering deep learning concepts, neural networks, and TensorFlow.",
+  },
+  {
+    title: "Architecting on AWS (Building Cloud Architecture on AWS)",
+    issuer: "Dicoding Indonesia",
+    date: "Jul 2026",
+    credential: "https://www.dicoding.com/certificates/MRZMw9NK3PYQ",
+    desc: "Completed AWS architecture training covering cloud architecture design and the AWS Well-Architected Framework.",
   },
 ];
 
@@ -543,9 +632,14 @@ const Hero: Component = () => (
 const About: Component = () => (
   <section class="pf-about pf-section" id="about">
     <p class="pf-label reveal reveal--fade-up">Get To Know Me</p>
-    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">About Me</h2>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">
+      About Me
+    </h2>
     <div class="pf-about__grid">
-      <div class="pf-about__text reveal reveal--fade-up" style="transition-delay:0.15s">
+      <div
+        class="pf-about__text reveal reveal--fade-up"
+        style="transition-delay:0.15s"
+      >
         <p>
           Hello! I'm <strong>Eridayalma Zahra Yohar</strong>, an Informatics
           Engineering student at
@@ -578,7 +672,9 @@ const About: Component = () => (
               class="pf-stat__val count-up"
               data-target={String(s.num)}
               data-suffix={s.suffix}
-            >0{s.suffix}</span>
+            >
+              0{s.suffix}
+            </span>
             <span class="pf-stat__label">{s.label}</span>
           </div>
         ))}
@@ -592,8 +688,13 @@ const Experience: Component = () => {
   return (
     <section class="pf-section" id="experience">
       <p class="pf-label reveal reveal--fade-up">Where I've Worked</p>
-      <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Work Experience</h2>
-      <div class="pf-exp__layout reveal reveal--fade-up" style="transition-delay:0.2s">
+      <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">
+        Work Experience
+      </h2>
+      <div
+        class="pf-exp__layout reveal reveal--fade-up"
+        style="transition-delay:0.2s"
+      >
         <div class="pf-exp__tabs">
           <For each={EXPERIENCES}>
             {(exp, i) => (
@@ -638,11 +739,16 @@ const Experience: Component = () => {
 const Education: Component = () => (
   <section class="pf-section" id="education">
     <p class="pf-label reveal reveal--fade-up">Academic Background</p>
-    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Education</h2>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">
+      Education
+    </h2>
     <div class="pf-edu__timeline">
       <For each={EDUCATIONS}>
         {(edu, i) => (
-          <div class="pf-edu__item reveal reveal--from-left" style={`transition-delay:${0.1 + i() * 0.15}s`}>
+          <div
+            class="pf-edu__item reveal reveal--from-left"
+            style={`transition-delay:${0.1 + i() * 0.15}s`}
+          >
             <div class="pf-edu__dot" />
             {i() < EDUCATIONS.length - 1 && <div class="pf-edu__line" />}
             <div class="pf-card pf-edu__card">
@@ -679,12 +785,16 @@ const Education: Component = () => (
 const Projects: Component = () => (
   <section class="pf-section" id="projects">
     <p class="pf-label reveal reveal--fade-up">Things I've Built</p>
-    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Projects</h2>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">
+      Projects
+    </h2>
 
     <div class="pf-proj__featured-list">
       <For each={PROJECTS.filter((p) => p.featured)}>
         {(p) => (
-          <div class={`pf-proj__featured pf-proj__featured--${p.align} reveal ${p.align === "left" ? "reveal--from-left" : "reveal--from-right"}`}>
+          <div
+            class={`pf-proj__featured pf-proj__featured--${p.align} reveal ${p.align === "left" ? "reveal--from-left" : "reveal--from-right"}`}
+          >
             <div class="pf-proj__mockup">
               <div class="pf-proj__mockup-bar">
                 <span />
@@ -738,8 +848,13 @@ const Projects: Component = () => (
 
 const Skills: Component = () => (
   <section id="skills" class="pf-section">
-    <p class="pf-skills__tag-label reveal reveal--fade-up">Technologies I work with</p>
-    <div class="pf-skills__tags stagger-parent reveal reveal--fade-up" style="transition-delay:0.1s">
+    <p class="pf-skills__tag-label reveal reveal--fade-up">
+      Technologies I work with
+    </p>
+    <div
+      class="pf-skills__tags stagger-parent reveal reveal--fade-up"
+      style="transition-delay:0.1s"
+    >
       <For each={TOOL_TAGS}>
         {(t) => <span class="pf-skills__tag stagger-child">{t}</span>}
       </For>
@@ -749,7 +864,9 @@ const Skills: Component = () => (
 const Certificates: Component = () => (
   <section class="pf-section" id="certificates">
     <p class="pf-label reveal reveal--fade-up">Professional Achievements</p>
-    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">Certificates</h2>
+    <h2 class="pf-title reveal reveal--fade-up" style="transition-delay:0.1s">
+      Certificates
+    </h2>
 
     <div class="pf-cert__list stagger-parent">
       <For each={CERTIFICATES}>
